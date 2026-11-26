@@ -2,372 +2,239 @@
 
 from types import MappingProxyType
 
-from smithy_core.prelude import BOOLEAN, FLOAT, INTEGER, STRING
-from smithy_core.schemas import Schema
-from smithy_core.shapes import ShapeID, ShapeType
-from smithy_core.traits import Trait
+from smithy_core._schema_compact import StaticOperationSchema, StaticSchema
 
 
-VALIDATION_EXCEPTION_FIELD = Schema.collection(
-    id=ShapeID("smithy.framework#ValidationExceptionField"),
+n0 = "smithy.framework"
+_VEF = "ValidationExceptionField"
+_p = "path"
+_s = "smithy.api#required"
+_m = "message"
+_VEFL = "ValidationExceptionFieldList"
+_me = "member"
+_VE = "ValidationException"
+_sm = "smithy.api#error"
+_c = "client"
+_fL = "fieldList"
+n1 = "vibe.astar.public.api.shared"
+_EI = "ExperimentIdentifier"
+_FL = "FloatList"
+n2 = "vibe.astar.public.api.operations"
+_FLL = "FloatListList"
+_BL = "BooleanList"
+_IL = "IntegerList"
+_FE = "ForbiddenException"
+_sE = "smithy.api#httpError"
+_NSR = "NoSuchResource"
+_rT = "resourceType"
+_UE = "UnauthorizedException"
+_VVE = "VibeValidationException"
+_OV = "ObservationValue"
+_d = "discrete"
+_co = "continuous"
+_mD = "multiDiscrete"
+_mB = "multiBinary"
+_b = "box"
+_di = "dict"
+_VM = "ValueMap"
+_k = "key"
+_v = "value"
+_AV = "ActionValue"
+_QAI = "QueryAgentInput"
+_smi = "smithy.api#input"
+_eI = "experimentId"
+_sL = "smithy.api#httpLabel"
+_o = "observations"
+_QAO = "QueryAgentOutput"
+_smit = "smithy.api#output"
+_a = "actions"
+_QA = "QueryAgent"
+_smith = "smithy.api#http"
+n3 = "vibe.astar.public.api"
+_V = "Vibe"
+_aUP = "aws.auth#cognitoUserPools"
+_smithy = "smithy.api#cors"
+_aJ = "aws.protocols#restJson1"
 
-    members={
-        "path": {
-            "target": STRING,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-        "message": {
-            "target": STRING,
-            "index": 1,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+VALIDATION_EXCEPTION_FIELD: StaticSchema = (
+18, n0, _VEF, 0,
+(_p, _m,),
+(
+    (3, 1),
+    (3, 1),
+),
 )
 
-VALIDATION_EXCEPTION_FIELD_LIST = Schema.collection(
-    id=ShapeID("smithy.framework#ValidationExceptionFieldList"),
-    shape_type=ShapeType.LIST,
-    members={
-        "member": {
-            "target": VALIDATION_EXCEPTION_FIELD,
-            "index": 0,
-        },
-
-    }
+VALIDATION_EXCEPTION_FIELD_LIST: StaticSchema = (
+16, n0, _VEFL, 0,
+(_me,),
+(
+    (VALIDATION_EXCEPTION_FIELD, 0),
+),
 )
 
-VALIDATION_EXCEPTION = Schema.collection(
-    id=ShapeID("smithy.framework#ValidationException"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#error"), value="client"),
-
-    ],
-    members={
-        "message": {
-            "target": STRING,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-        "fieldList": {
-            "target": VALIDATION_EXCEPTION_FIELD_LIST,
-            "index": 1,
-        },
-
-    }
+VALIDATION_EXCEPTION: StaticSchema = (
+18, n0, _VE, {_sm: _c},
+(_m, _fL,),
+(
+    (3, 1),
+    (VALIDATION_EXCEPTION_FIELD_LIST, 0),
+),
 )
 
-EXPERIMENT_IDENTIFIER = Schema(
-    id=ShapeID("vibe.astar.public.api.shared#ExperimentIdentifier"),
-    shape_type=ShapeType.STRING,
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#pattern"), value="^[A-Za-z0-9-]+$"),
+EXPERIMENT_IDENTIFIER: StaticSchema = (
+3, n1, _EI, 0)
 
-    ],
-
+FLOAT_LIST: StaticSchema = (
+16, n1, _FL, 0,
+(_me,),
+(
+    (9, 0),
+),
 )
 
-FLOAT_LIST = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#FloatList"),
-    shape_type=ShapeType.LIST,
-    members={
-        "member": {
-            "target": FLOAT,
-            "index": 0,
-        },
-
-    }
+FLOAT_LIST_LIST: StaticSchema = (
+16, n2, _FLL, 0,
+(_me,),
+(
+    (FLOAT_LIST, 0),
+),
 )
 
-FLOAT_LIST_LIST = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#FloatListList"),
-    shape_type=ShapeType.LIST,
-    members={
-        "member": {
-            "target": FLOAT_LIST,
-            "index": 0,
-        },
-
-    }
+BOOLEAN_LIST: StaticSchema = (
+16, n2, _BL, 0,
+(_me,),
+(
+    (2, 0),
+),
 )
 
-BOOLEAN_LIST = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#BooleanList"),
-    shape_type=ShapeType.LIST,
-    members={
-        "member": {
-            "target": BOOLEAN,
-            "index": 0,
-        },
-
-    }
+INTEGER_LIST: StaticSchema = (
+16, n1, _IL, 0,
+(_me,),
+(
+    (7, 0),
+),
 )
 
-INTEGER_LIST = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.shared#IntegerList"),
-    shape_type=ShapeType.LIST,
-    members={
-        "member": {
-            "target": INTEGER,
-            "index": 0,
-        },
-
-    }
+FORBIDDEN_EXCEPTION: StaticSchema = (
+18, n1, _FE, {_sm: _c, _sE: 403},
+(_m,),
+(
+    (3, 1),
+),
 )
 
-FORBIDDEN_EXCEPTION = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.shared#ForbiddenException"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#error"), value="client"),
-        Trait.new(id=ShapeID("smithy.api#httpError"), value=403),
-
-    ],
-    members={
-        "message": {
-            "target": STRING,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+NO_SUCH_RESOURCE: StaticSchema = (
+18, n1, _NSR, {_sm: _c, _sE: 404},
+(_rT, _m,),
+(
+    (3, 1),
+    (3, 1),
+),
 )
 
-UNAUTHORIZED_EXCEPTION = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.shared#UnauthorizedException"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#error"), value="client"),
-        Trait.new(id=ShapeID("smithy.api#httpError"), value=401),
-
-    ],
-    members={
-        "message": {
-            "target": STRING,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+UNAUTHORIZED_EXCEPTION: StaticSchema = (
+18, n1, _UE, {_sm: _c, _sE: 401},
+(_m,),
+(
+    (3, 1),
+),
 )
 
-VIBE_VALIDATION_EXCEPTION = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.shared#VibeValidationException"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#error"), value="client"),
-        Trait.new(id=ShapeID("smithy.api#httpError"), value=400),
-
-    ],
-    members={
-        "message": {
-            "target": STRING,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+VIBE_VALIDATION_EXCEPTION: StaticSchema = (
+18, n1, _VVE, {_sm: _c, _sE: 400},
+(_m,),
+(
+    (3, 1),
+),
 )
 
-OBSERVATION_VALUE = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#ObservationValue"),
-    shape_type=ShapeType.UNION,
-    members={
-        "discrete": {
-            "target": INTEGER,
-            "index": 0,
-        },
-
-        "continuous": {
-            "target": FLOAT_LIST,
-            "index": 1,
-        },
-
-        "multiDiscrete": {
-            "target": INTEGER_LIST,
-            "index": 2,
-        },
-
-        "multiBinary": {
-            "target": BOOLEAN_LIST,
-            "index": 3,
-        },
-
-        "box": {
-            "target": FLOAT_LIST_LIST,
-            "index": 4,
-        },
-
-    }
+OBSERVATION_VALUE: StaticSchema = (
+19, n2, _OV, 0,
+(_d, _co, _mD, _mB, _b, _di,),
+(
+    (7, 0),
+    (FLOAT_LIST, 0),
+    (INTEGER_LIST, 0),
+    (BOOLEAN_LIST, 0),
+    (FLOAT_LIST_LIST, 0),
+    (lambda: VALUE_MAP, 0),
+),
 )
 
-VALUE_MAP = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#ValueMap"),
-    shape_type=ShapeType.MAP,
-    members={
-        "key": {
-            "target": STRING,
-            "index": 0,
-        },
-
-        "value": {
-            "target": OBSERVATION_VALUE,
-            "index": 1,
-        },
-
-    }
+VALUE_MAP: StaticSchema = (
+17, n2, _VM, 0,
+(_k, _v,),
+(
+    (3, 0),
+    (OBSERVATION_VALUE, 0),
+),
 )
 
-ACTION_VALUE = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#ActionValue"),
-    shape_type=ShapeType.UNION,
-    members={
-        "discrete": {
-            "target": INTEGER,
-            "index": 0,
-        },
-
-        "continuous": {
-            "target": FLOAT_LIST,
-            "index": 1,
-        },
-
-        "multiDiscrete": {
-            "target": INTEGER_LIST,
-            "index": 2,
-        },
-
-        "multiBinary": {
-            "target": BOOLEAN_LIST,
-            "index": 3,
-        },
-
-        "box": {
-            "target": FLOAT_LIST_LIST,
-            "index": 4,
-        },
-
-        "dict": {
-            "target": VALUE_MAP,
-            "index": 5,
-        },
-
-    }
+ACTION_VALUE: StaticSchema = (
+19, n2, _AV, 0,
+(_d, _co, _mD, _mB, _b, _di,),
+(
+    (7, 0),
+    (FLOAT_LIST, 0),
+    (INTEGER_LIST, 0),
+    (BOOLEAN_LIST, 0),
+    (FLOAT_LIST_LIST, 0),
+    (VALUE_MAP, 0),
+),
 )
 
-QUERY_AGENT_INPUT = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#QueryAgentInput"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#input")),
-
-    ],
-    members={
-        "experimentId": {
-            "target": EXPERIMENT_IDENTIFIER,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-                Trait.new(id=ShapeID("smithy.api#httpLabel")),
-
-            ],
-        },
-
-        "observations": {
-            "target": OBSERVATION_VALUE,
-            "index": 1,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+QUERY_AGENT_INPUT: StaticSchema = (
+18, n2, _QAI, {_smi: None},
+(_eI, _o,),
+(
+    (EXPERIMENT_IDENTIFIER, 9),
+    (OBSERVATION_VALUE, 1),
+),
 )
 
-QUERY_AGENT_OUTPUT = Schema.collection(
-    id=ShapeID("vibe.astar.public.api.operations#QueryAgentOutput"),
-
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#output")),
-
-    ],
-    members={
-        "actions": {
-            "target": ACTION_VALUE,
-            "index": 0,
-            "traits": [
-                Trait.new(id=ShapeID("smithy.api#required")),
-
-            ],
-        },
-
-    }
+QUERY_AGENT_OUTPUT: StaticSchema = (
+18, n2, _QAO, {_smit: None},
+(_a,),
+(
+    (ACTION_VALUE, 1),
+),
 )
 
-QUERY_AGENT = Schema(
-    id=ShapeID("vibe.astar.public.api.operations#QueryAgent"),
-    shape_type=ShapeType.OPERATION,
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#http"), value=MappingProxyType({
-                "code": 200,
-                "method": "POST",
-                "uri": "/agents/{experimentId}/query",
-            })),
-
-    ],
-
+QUERY_AGENT: StaticOperationSchema = (
+23, n2, _QA, {_smith: MappingProxyType({
+        "code": 200,
+        "method": "POST",
+        "uri": "/agents/{experimentId}/query",
+    })},
+QUERY_AGENT_INPUT,
+QUERY_AGENT_OUTPUT,
+(
+    UNAUTHORIZED_EXCEPTION,
+    VALIDATION_EXCEPTION,
+    VIBE_VALIDATION_EXCEPTION,
+    FORBIDDEN_EXCEPTION,
+    NO_SUCH_RESOURCE,
+)
 )
 
-VIBE = Schema(
-    id=ShapeID("vibe.astar.public.api#Vibe"),
-    shape_type=ShapeType.SERVICE,
-    traits=[
-        Trait.new(id=ShapeID("smithy.api#title"), value="A* tech Vibe's publicly facing API model"),
-        Trait.new(id=ShapeID("smithy.api#cors"), value=MappingProxyType({
-                "additionalAllowedHeaders": (
-                    "Content-Type",
-                    "X-Api-Key",
-                    "X-Amz-User-Agent",
-                    "Amz-Sdk-Invocation-Id",
-                    "Amz-Sdk-Request",
-                ),
-                "additionalExposedHeaders": (
-                    "Content-Type",
-                    "X-Api-Key",
-                    "X-Amz-User-Agent",
-                ),
-            })),
-        Trait.new(id=ShapeID("aws.protocols#restJson1")),
-
-    ],
-
-)
-
-OBSERVATION_VALUE.members["dict"] = Schema.member(
-    id=OBSERVATION_VALUE.id.with_member("dict"),
-    target=VALUE_MAP,
-    index=5,
-)
+VIBE: StaticSchema = (
+21, n3, _V, {_aUP: MappingProxyType({
+        "providerArns": (
+            "arn:aws:cognito-idp:us-east-1:339713111644:userpool/us-east-1_QTFbv9Obf",
+        ),
+    }), _smithy: MappingProxyType({
+        "additionalAllowedHeaders": (
+            "Content-Type",
+            "X-Api-Key",
+            "X-Amz-User-Agent",
+            "Amz-Sdk-Invocation-Id",
+            "Amz-Sdk-Request",
+        ),
+        "additionalExposedHeaders": (
+            "Content-Type",
+            "X-Api-Key",
+            "X-Amz-User-Agent",
+        ),
+    }), _aJ: None})
